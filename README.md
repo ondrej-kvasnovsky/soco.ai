@@ -14,9 +14,9 @@ npm install soco.ai
 import { SocoClient, Config } from 'soco.ai';
 
 const config: Config = {
-  adminApiKey: '...', // needed for calling of Admin APIs
-  clientId: '...', // needed for calling query APIs & Parse Doc API
-  queryApiKey: '...',// needed for calling query APIs
+  adminApiKey: '...', // needed for Admin APIs
+  clientId: '...', // needed for APIs & Parse Doc API
+  queryApiKey: '...',// needed for Query APIs
 };
 const client = new SocoClient(config);
 ```
