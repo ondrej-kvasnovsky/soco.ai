@@ -220,3 +220,13 @@ const operations = await client.readOperations(0, 10, -1);
 ### Error Handling
 
 When API fails to return the result, it `SocoClient` functions throw an error with all the details.  
+
+# Examples
+
+## Load CSV and PDF data
+
+```typescript
+
+```
+
+

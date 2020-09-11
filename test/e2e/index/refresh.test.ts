@@ -14,8 +14,8 @@ describe('refresh', () => {
     const request: RefreshRequest = {
       params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} },
     };
-    const answers = await refresh(request, getTestConfig());
+    const response = await refresh(request, getTestConfig());
 
-    expect(answers.op_id).toBeDefined();
+    expect(response.op_id).toBeDefined();
   });
 });

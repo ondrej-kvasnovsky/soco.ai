@@ -33,12 +33,14 @@ import { reindex } from './index/reindex';
 import { RefreshRequest } from './index/RefreshRequest';
 import { RefreshResponse } from './index/RefreshResponse';
 import { refresh } from './index/refresh';
+import { addUnstructuredDoc } from './doc/add/addUnstructuredDoc';
 
 /**
  * Facade for all SOCO.ai functions.
  */
 export class SocoClient {
-  constructor(readonly config: Config) {}
+  constructor(readonly config: Config) {
+  }
 
   async query(request: QueryRequest): Promise<QueryResponse> {
     return query(request, this.config);
@@ -78,6 +80,15 @@ export class SocoClient {
     waitUntilOpFinished: boolean
   ): Promise<AddDocsResponse> {
     return addFAQsFromCSVs(rootDir, meta, auto_index, this.config, waitUntilOpFinished);
+  }
+
+  async addUnstructuredDoc(
+    parseRequest: ParseDocRequest,
+    meta: any = {},
+    auto_index = true,
+    waitUntilOpFinished = false
+  ): Promise<AddDocsResponse> {
+    return addUnstructuredDoc(parseRequest, meta, auto_index, this.config, waitUntilOpFinished);
   }
 
   async getOperationStatus(opId: string): Promise<OperationStatus> {

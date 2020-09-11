@@ -1,6 +1,6 @@
 {
   "name": "soco.ai",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
@@ -9,7 +9,7 @@
   "repository": "https://github.com/ondrej-kvasnovsky/soco.ai",
   "bugs": "https://github.com/ondrej-kvasnovsky/soco.ai/issues",
   "scripts": {
-    "prepublish": "tsc",
+    "prepare": "tsc",
     "format": "prettier --config ./.prettierrc --write \"**/*.ts\"",
     "test": "jest test --coverage --runInBand",
     "test-unit": "jest test/unit --coverage",
