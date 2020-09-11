@@ -85,6 +85,7 @@ const response = await client.addDocs(request, true);
 
 Using:
 * https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/add-documents
+* https://docs.soco.ai/soco-api/data-process/file-type#soco_faq
 
 ```typescript
 const filePath = 'test/e2e/fixtures/dataset-1'; // dir with CSV files 
