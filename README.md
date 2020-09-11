@@ -242,7 +242,7 @@ what is your age ,I am 42 years old
 import { SocoClient, Config, RefreshRequest, ParseDocRequest } from "soco.ai";
 
 const pdfFile = "http://path to your pdf.pdf"; // there is no OCR, text needs to be in the PDF 
-const jllQnA = "/Users/path to your folder with CSV files";
+const csvFolder = "/Users/path to your folder with CSV files";
 
 async function loadData() {
   // create config with secrets 
@@ -264,7 +264,7 @@ async function loadData() {
   await client.refresh(request);
   
   // add FAQs from CSV files
-  await client.addFAQsFromCSVs(jllQnA, {}, true, true);
+  await client.addFAQsFromCSVs(csvFolder, {}, true, true);
  
   // add content of PDF file (unstructured data)
   const parseRequest: ParseDocRequest = {
