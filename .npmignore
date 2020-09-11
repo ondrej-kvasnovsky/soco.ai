@@ -1,0 +1,13 @@
+reporter
+temp
+UI
+.idea
+cloudbuild.yaml
+.codeclimate.yml
+.gitignore
+.prettierrc
+develop-tts.json
+dialogflow-admin-service-account.json
+jest.config.js
+output.txt
+service-account.json
