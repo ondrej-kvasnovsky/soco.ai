@@ -241,7 +241,7 @@ what is your age ,I am 42 years old
 ```typescript
 import { SocoClient, Config, RefreshRequest, ParseDocRequest } from "soco.ai";
 
-const pdfFile = "http://path to your pdf.pdf"; // there is no OCR, text needs to be in the PDF 
+const pdfFile = "http://path to your pdf.pdf"; // there is no OCR, plain text needs to be in the PDF 
 const csvFolder = "/Users/path to your folder with CSV files";
 
 async function loadData() {
