@@ -1,6 +1,9 @@
 # SOCO.ai JavaScript/TypeScript Client
 
-[SOCO.ai](https://www.soco.ai) client for NodeJS.
+NodeJS client for SOCO.ai. 
+
+* [SOCO.ai](https://www.soco.ai)
+* [SOCO Documentation](https://docs.soco.ai)
 
 ## Install
 
