@@ -1,1 +1,3 @@
-export class AggregateDocsRequest {}
+export class AggregateDocsRequest {
+  field: string;
+}

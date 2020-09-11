@@ -23,6 +23,9 @@ const client = new SocoClient(config);
 
 ### Query / Search
 
+Using: 
+* https://docs.soco.ai/soco-api/operation-guide/information-retrieval
+
 ```typescript
 import { QueryRequest } from 'soco.ai';
 const request: QueryRequest = {
@@ -41,12 +44,25 @@ It is possible to pass `waitUntilOpFinished` to `SocoClient` functions, that cal
 which will make the function wait until the operation is finished or failed. 
 The default value of `waitUntilOpFinished` is `false`. If `waitUntilOpFinished` set to `true`, 
 
+```typescript
+const waitUntilOpFinished = true;
+const response = await client.addDocs(request, waitUntilOpFinished);
 ```
+
+The function that waits for operation to be finished is available as well.
+
+```typescript
 const operationId = '...';
 const status = client.waitUntilFinished(operationId);
 ```
 
-### Add documents
+Using:
+* https://docs.soco.ai/soco-api/system-management-1/op-management
+
+### Add Documents
+
+Using:
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/add-documents
 
 ```typescript
 import { AddDocsRequest } from 'soco.ai';
@@ -67,12 +83,19 @@ const response = await client.addDocs(request, true);
 
 ### Add FAQs from CSV files
 
+Using:
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/add-documents
+
 ```typescript
 const filePath = 'test/e2e/fixtures/dataset-1'; // dir with CSV files 
 const response = await client.addFAQsFromCSVs(filePath, {}, true, true);
 ```
 
 ### Add unstructured data (PDF or MS Word)
+
+Using:
+* https://docs.soco.ai/soco-api/data-process/parse-raw-files
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/add-documents
 
 ```typescript
 import { ParseDocRequest } from 'soco.ai';
@@ -88,6 +111,9 @@ const response = await client.addUnstructuredDoc(parseRequest, undefined, true, 
 
 ### Read documents
 
+Using:
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/read-documents
+
 ```typescript
 import { ReadDocsRequest } from 'soco.ai';
 
@@ -96,6 +122,9 @@ const response = await client.readDocs(request);
 ```
 
 ### Update documents
+
+Using:
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/update-documents
 
 ```typescript
 import { UpdateDocsRequest } from 'soco.ai';
@@ -115,6 +144,9 @@ const response = await client.updateDocs(request, true);
 
 ### Delete documents
 
+Using:
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/delete-documents
+
 If `data` is left empty or undefined, it removes all the documents.
 
 ```typescript
@@ -127,13 +159,33 @@ export const request: DeleteDocsRequest = {
 const response = await client.deleteDocs(request, true);
 ```
 
+### Aggregate Documents
+
+Using:
+* https://docs.soco.ai/soco-api/data-process/json-files-crud-operation/aggregate-documents
+
+If `data` is left empty or undefined, it removes all the documents.
+
+```typescript
+import { AggregateDocsRequest } from 'soco.ai';
+const request: AggregateDocsRequest = { field: '$meta.doc_id' };
+
+const response = await aggregateDocs(request, getTestConfig());
+```
+
 ### Reindex
+
+Using:
+* https://docs.soco.ai/soco-api/system-management-1/index-management/re-index
 
 ```typescript
 const answers = await client.reindex();
 ```
 
 ### Refresh
+
+Using:
+* https://docs.soco.ai/soco-api/system-management-1/index-management/refresh
 
 ```typescript
 const request: RefreshRequest = {
@@ -142,15 +194,25 @@ const request: RefreshRequest = {
 const answers = await client.refresh(request);
 ```
 
-### Get operation status
+### Get Operation Status
+
+Using:
+* https://docs.soco.ai/soco-api/system-management-1/op-management
 
 ```typescript
 const operationId = response.op_id;
 const status = await client.getOperationStatus(operationId);
 ```
 
-### Get operations
+### Get Operations
+
+Using:
+* https://docs.soco.ai/soco-api/system-management-1/op-management
 
 ```typescript
 const operations = await client.readOperations(0, 10, -1);
 ```
+
+### Error Handling
+
+When API fails to return the result, it `SocoClient` functions throw an error with all the details.  

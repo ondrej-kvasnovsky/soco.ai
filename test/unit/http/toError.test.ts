@@ -9,11 +9,11 @@ describe('toError', () => {
       message: string = 'a message';
       name: string = 'a name';
       response: {
-        statusText: 'status text',
-        status: 500,
+        statusText: 'status text';
+        status: 500;
         data: {
-          message: 'error message'
-        }
+          message: 'error message';
+        };
         headers: any;
         config: AxiosRequestConfig;
         request?: any;
