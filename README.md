@@ -225,8 +225,63 @@ When API fails to return the result, it `SocoClient` functions throw an error wi
 
 ## Load CSV and PDF data
 
-```typescript
+CSV files with FAQ need to be in this structure. 
+There can/should be multiple questions leading to a single answer 
+to improve matching accuracy.
+ 
+```csv
+question         ,answer
+how are you doing,I am doing fine
+how is it going  ,I am doing fine
+how is life      ,It is fine
+how old are you  ,I am 42 years old
+what is your age ,I am 42 years old
+```
 
+```typescript
+import { SocoClient, Config, RefreshRequest, ParseDocRequest } from "soco.ai";
+
+const pdfFile = "http://path to your pdf.pdf"; // there is no OCR, text needs to be in the PDF 
+const jllQnA = "/Users/path to your folder with CSV files";
+
+async function loadData() {
+  // create config with secrets 
+  const config: Config = {
+    adminApiKey: "copy paste the key here from https://app.soco.ai",
+    clientId: "copy paste the key here from https://app.soco.ai",
+    queryApiKey: "copy paste the key here from https://app.soco.ai"
+  };
+  // create SOCO client
+  const client = new SocoClient(config);
+ 
+  // delete all the docs from SOCO (if needed, to ensure clean start)
+  await client.deleteDocs({ doc_ids: undefined, auto_index: true }, true);
+  
+  // refresh all indexes
+  const request: RefreshRequest = {
+    params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} }
+  };
+  await client.refresh(request);
+  
+  // add FAQs from CSV files
+  await client.addFAQsFromCSVs(jllQnA, {}, true, true);
+ 
+  // add content of PDF file (unstructured data)
+  const parseRequest: ParseDocRequest = {
+    client_id: config.clientId,
+    file_type: "url",
+    file_url: pdfFile,
+    lang: "en"
+  };
+  await client.addUnstructuredDoc(parseRequest, {}, true, true);
+
+  // refresh all indexes
+  await client.refresh(request);
+}
+
+loadData()
+  .then(_ => console.log("Done"))
+  .catch(error => console.error(error));
 ```
 
 
