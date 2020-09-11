@@ -6,6 +6,7 @@ NodeJS client for SOCO.ai.
 * [SOCO Documentation](https://docs.soco.ai)
 
 [![Build Status](https://travis-ci.org/ondrej-kvasnovsky/soco.ai.svg?branch=master)](https://travis-ci.org/ondrej-kvasnovsky/soco.ai)
+[![Coverage Status](https://coveralls.io/repos/github/ondrej-kvasnovsky/soco.ai/badge.svg?branch=master)](https://coveralls.io/github/ondrej-kvasnovsky/soco.ai?branch=master)
 
 ## Install
 
