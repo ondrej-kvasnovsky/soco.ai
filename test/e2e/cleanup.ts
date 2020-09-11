@@ -7,5 +7,5 @@ export async function cleanup(): Promise<void> {
   const request = {
     params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} },
   };
-  await refresh(request, getTestConfig(), true);
+  // await refresh(request, getTestConfig(), true);
 }

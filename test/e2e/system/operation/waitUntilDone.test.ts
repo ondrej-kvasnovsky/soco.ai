@@ -3,13 +3,8 @@ import { AddDocsRequest } from '../../../../src';
 import { addDocs } from '../../../../src';
 
 import { getTestConfig } from '../../getTestConfig';
-import { cleanup } from '../../cleanup';
 
 describe('waitUntilDone', () => {
-  beforeEach(async () => {
-    await cleanup();
-  });
-
   it('waits until the operation is done', async () => {
     const request: AddDocsRequest = {
       data: [

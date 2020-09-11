@@ -5,6 +5,8 @@ NodeJS client for SOCO.ai.
 * [SOCO.ai](https://www.soco.ai)
 * [SOCO Documentation](https://docs.soco.ai)
 
+[![Build Status](https://travis-ci.org/ondrej-kvasnovsky/soco.ai.svg?branch=master)](https://travis-ci.org/ondrej-kvasnovsky/soco.ai)
+
 ## Install
 
 ```bash

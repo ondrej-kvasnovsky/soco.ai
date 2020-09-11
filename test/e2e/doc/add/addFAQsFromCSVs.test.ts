@@ -1,13 +1,8 @@
 import { addFAQsFromCSVs } from '../../../../src';
 
 import { getTestConfig } from '../../getTestConfig';
-import { cleanup } from '../../cleanup';
 
 describe('addFAQsFromCSVs', () => {
-  beforeEach(async () => {
-    await cleanup();
-  });
-
   it('adds a doc', async () => {
     const filePath = 'test/e2e/fixtures/dataset-1';
 

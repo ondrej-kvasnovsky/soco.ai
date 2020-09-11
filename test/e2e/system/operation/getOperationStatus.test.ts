@@ -3,13 +3,8 @@ import { AddDocsRequest } from '../../../../src';
 import { addDocs } from '../../../../src';
 
 import { getTestConfig } from '../../getTestConfig';
-import { cleanup } from '../../cleanup';
 
 describe('getOperationStatus', () => {
-  beforeEach(async () => {
-    await cleanup();
-  });
-
   it('gets operation status by ID', async () => {
     const request: AddDocsRequest = {
       data: [

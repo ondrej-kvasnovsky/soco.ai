@@ -1,12 +1,10 @@
 import { AddDocsRequest, SocoClient } from '../../src';
 import { getTestConfig } from './getTestConfig';
-import { defaultRequest } from '../../src/doc/delete/deleteDocs';
 
 describe('SocoClient', () => {
   let client: SocoClient;
   beforeEach(async () => {
     client = new SocoClient(getTestConfig());
-    await client.deleteDocs(defaultRequest, true);
   });
 
   it('adds a doc', async () => {

@@ -3,14 +3,9 @@ import { UpdateDocsRequest } from '../../../../src';
 
 import { addSampleDocs } from '../add/addSampleDocs';
 import { getTestConfig } from '../../getTestConfig';
-import { cleanup } from '../../cleanup';
 
 describe('updateDocs', () => {
-  beforeEach(async () => {
-    await cleanup();
-  });
-
-  it('adds a doc', async () => {
+  it('updates a doc', async () => {
     const sampleDocs = await addSampleDocs();
 
     const request: UpdateDocsRequest = {

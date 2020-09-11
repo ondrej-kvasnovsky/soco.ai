@@ -2,13 +2,8 @@ import { addUnstructuredDoc } from '../../../../src';
 import { ParseDocRequest } from '../../../../src';
 
 import { getTestConfig } from '../../getTestConfig';
-import { cleanup } from '../../cleanup';
 
 describe('addUnstructuredDoc', () => {
-  beforeEach(async () => {
-    await cleanup();
-  });
-
   it('adds a PDF file', async () => {
     const parseRequest: ParseDocRequest = {
       client_id: getTestConfig().clientId,

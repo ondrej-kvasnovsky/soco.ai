@@ -14,7 +14,6 @@ describe('query', () => {
 
   it('queries for answers', async () => {
     await addSampleDocs();
-
     const request: QueryRequest = {
       uid: 'some user ID',
       query: {

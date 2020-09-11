@@ -6,7 +6,7 @@ import { cleanup } from '../cleanup';
 
 describe('autocomplete', () => {
   beforeEach(async () => {
-    await cleanup();
+    // await cleanup();
   });
 
   // there are issues with this API/indexes, need to wait for fix by SOCO.ai
