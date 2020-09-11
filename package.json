@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "tsc",
     "format": "prettier --config ./.prettierrc --write \"**/*.ts\"",
-    "test": "jest test --coverage --runInBand && cat ./tests/coverage/lcov.info | coveralls",
+    "test": "jest test --coverage --runInBand && cat ./coverage/lcov.info | coveralls",
     "test-unit": "jest test/unit --coverage",
     "test-integration": "jest test/integration --coverage --runInBand",
     "test-e2e": "jest test/e2e --coverage --runInBand"
