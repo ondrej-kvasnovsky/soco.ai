@@ -9,7 +9,7 @@ describe('refresh', () => {
     const request: RefreshRequest = {
       params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} },
     };
-    const response = await refresh(request, getTestConfig());
+    const response = await refresh(request, getTestConfig(), true);
 
     expect(response.op_id).toBeDefined();
   });

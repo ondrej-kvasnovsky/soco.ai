@@ -45,6 +45,7 @@ export { RefreshRequest } from './index/RefreshRequest';
 export { RefreshResponse } from './index/RefreshResponse';
 
 export { reindex } from './index/reindex';
+export { ReindexRequest } from './index/ReindexRequest';
 export { ReindexResponse } from './index/ReindexResponse';
 
 export { Config } from './Config';

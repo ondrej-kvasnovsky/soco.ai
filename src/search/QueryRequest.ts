@@ -4,7 +4,7 @@ export class QueryRequest {
     query: string;
     n_best: number;
     skip?: number;
-    func_type?: 'faq' | 'qa' | 'lm' | string;
+    func_type?: 'faq' | 'qa' | 'lm' | 'qa_faq' | string;
     answer_type?: 'sentence' | 'document' | 'phrase';
     filters?: {
       exists?: { [key: string]: any };

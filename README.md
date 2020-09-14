@@ -123,8 +123,10 @@ Using:
 
 ```typescript
 import { ReadDocsRequest } from 'soco.ai';
-
-const request: ReadDocsRequest = {};
+const request: ReadDocsRequest = {
+  skip: 0,
+  limit: 10
+};
 const response = await client.readDocs(request);
 ```
 
@@ -176,8 +178,7 @@ If `data` is left empty or undefined, it removes all the documents.
 ```typescript
 import { AggregateDocsRequest } from 'soco.ai';
 const request: AggregateDocsRequest = { field: '$meta.doc_id' };
-
-const response = await aggregateDocs(request, getTestConfig());
+const response = await client.aggregateDocs(request);
 ```
 
 ### Reindex
@@ -186,7 +187,11 @@ Using:
 * https://docs.soco.ai/soco-api/system-management-1/index-management/re-index
 
 ```typescript
-const answers = await client.reindex();
+import { ReindexRequest } from 'soco.ai';
+const request: ReindexRequest = {
+  params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} },
+};
+const answers = await client.reindex(request);
 ```
 
 ### Refresh
@@ -195,6 +200,7 @@ Using:
 * https://docs.soco.ai/soco-api/system-management-1/index-management/refresh
 
 ```typescript
+import { RefreshRequest } from 'soco.ai';
 const request: RefreshRequest = {
   params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} }
 };
@@ -242,7 +248,7 @@ what is your age ,I am 42 years old
 ```
 
 ```typescript
-import { SocoClient, Config, RefreshRequest, ParseDocRequest } from "soco.ai";
+import { SocoClient, Config, ReindexRequest, ParseDocRequest } from "soco.ai";
 
 const pdfFile = "http://path to your pdf.pdf"; // there is no OCR, plain text needs to be in the PDF 
 const csvFolder = "/Users/path to your folder with CSV files";
@@ -261,10 +267,10 @@ async function loadData() {
   await client.deleteDocs({ doc_ids: undefined, auto_index: true }, true);
   
   // refresh all indexes
-  const request: RefreshRequest = {
+  const request: ReindexRequest = {
     params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} }
   };
-  await client.refresh(request);
+  await client.reindex(request, true);
   
   // add FAQs from CSV files
   await client.addFAQsFromCSVs(csvFolder, {}, true, true);
@@ -279,7 +285,7 @@ async function loadData() {
   await client.addUnstructuredDoc(parseRequest, {}, true, true);
 
   // refresh all indexes
-  await client.refresh(request);
+  await client.reindex(request, true);
 }
 
 loadData()

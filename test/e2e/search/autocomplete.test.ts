@@ -18,7 +18,7 @@ describe('autocomplete', () => {
       query: {
         query: 'who is Jimmy?',
         n_best: 3,
-      },
+      }
     };
     const answers = await autocomplete(request, getTestConfig());
 

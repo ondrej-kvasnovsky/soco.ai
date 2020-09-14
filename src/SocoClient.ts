@@ -34,6 +34,8 @@ import { RefreshRequest } from './index/RefreshRequest';
 import { RefreshResponse } from './index/RefreshResponse';
 import { refresh } from './index/refresh';
 import { addUnstructuredDoc } from './doc/add/addUnstructuredDoc';
+import { ReindexRequest } from './index/ReindexRequest';
+import { waitUntilFinished } from './system/operation/waitUntilFinished';
 
 /**
  * Facade for all SOCO.ai functions.
@@ -46,7 +48,7 @@ export class SocoClient {
     return query(request, this.config);
   }
 
-  async addDocs(request: AddDocsRequest, waitUntilOpFinished: boolean): Promise<AddDocsResponse> {
+  async addDocs(request: AddDocsRequest, waitUntilOpFinished = false): Promise<AddDocsResponse> {
     return addDocs(request, this.config, waitUntilOpFinished);
   }
 
@@ -77,7 +79,7 @@ export class SocoClient {
     rootDir: string,
     meta: any,
     auto_index: boolean,
-    waitUntilOpFinished: boolean
+    waitUntilOpFinished = false
   ): Promise<AddDocsResponse> {
     return addFAQsFromCSVs(rootDir, meta, auto_index, this.config, waitUntilOpFinished);
   }
@@ -99,15 +101,32 @@ export class SocoClient {
     return readOperations(skip, limit, sort_direction, this.config);
   }
 
-  async uploadData(request: DataUploadRequest): Promise<DataUploadResponse> {
-    return uploadData(request, this.config);
+  async uploadData(request: DataUploadRequest, waitUntilOpFinished = false): Promise<DataUploadResponse> {
+    return uploadData(request, this.config, waitUntilOpFinished);
   }
 
-  async reindex(): Promise<ReindexResponse> {
-    return reindex(this.config);
+  /**
+   * Creates a new index.
+   *
+   * @param request {@see ReindexRequest}
+   * @param waitUntilOpFinished false by default, will wait for operation to finish or fail
+   */
+  async reindex(request: ReindexRequest, waitUntilOpFinished = false): Promise<ReindexResponse> {
+    return reindex(request, this.config, waitUntilOpFinished);
   }
 
-  async refresh(request: RefreshRequest): Promise<RefreshResponse> {
-    return refresh(request, this.config);
+  /**
+   * Updates existing index, only useful when new data is inserted,
+   * won't have any effects after data is removed.
+   *
+   * @param request {@see RefreshRequest}
+   * @param waitUntilOpFinished false by default, will wait for operation to finish or fail
+   */
+  async refresh(request: RefreshRequest, waitUntilOpFinished = false): Promise<RefreshResponse> {
+    return refresh(request, this.config, waitUntilOpFinished);
+  }
+
+  async waitUntilFinished(opId: string): Promise<void> {
+    return waitUntilFinished(opId, this.config);
   }
 }
