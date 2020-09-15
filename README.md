@@ -38,11 +38,19 @@ const request: QueryRequest = {
   uid: 'ID of the end user',
   query: {
     query: 'who is Jimmy?',
-    n_best: 3
+    n_best: 3,
+    func_type: 'qa_faq_combine'
   }
 };
 const answers = await client.query(request);
 ```
+
+#### func_type
+* `qa` - question and answer is finding the answer directly in the text
+* `faq` - frequently asked questions is finding the most similar questions
+* `lm` - language model, is a task to predict the next work. For example, the output of lm(“nice to meet”) will be “you”
+* `qa_faq` - returns `qa` and `faq` in one request as two separate arrays
+* `qa_faq_combine` - returns `qa` and `faq` together in one array, sorted by score
 
 ### Waiting for Operation to Finish
 
@@ -266,7 +274,7 @@ async function loadData() {
   // delete all the docs from SOCO (if needed, to ensure clean start)
   await client.deleteDocs({ doc_ids: undefined, auto_index: true }, true);
   
-  // refresh all indexes
+  // refresh all indexes - it can take a lot of time, better to reindex only what needs to be reindexed
   const request: ReindexRequest = {
     params: { lm: {}, qa: {}, kw: {}, qq: {}, tuple: {} }
   };
